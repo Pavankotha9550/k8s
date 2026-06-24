@@ -2,7 +2,7 @@ apiVersiion: v1
 kind: pod
 metadata:
   name: roboshop
-  lables:
+  labels:
     purpose: demo
 spec:
   containers:
