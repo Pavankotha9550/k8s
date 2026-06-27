@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: pod-ConfigMap
+  name: pod-configmap
   labels:
     project: roboshop
-    type: config map
+    type: config-map
 data:
   # property-like keys; each key maps to a simple value
   player_initial_lives: "3"
