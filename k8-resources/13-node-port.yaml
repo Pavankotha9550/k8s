@@ -13,14 +13,14 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80 
-
-apiVersion: v1
-kind: Pod
-metadata:
-  name: roboshop
-  labels:
-    purpose: nodeport
-spec:
-  containers:
-  - name: nginx
-    image: nginx 
+####
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: roboshop
+#   labels:
+#     purpose: nodeport
+# spec:
+#   containers:
+#   - name: nginx
+#     image: nginx 
