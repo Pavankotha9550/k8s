@@ -18,7 +18,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: roboshop--LB-service
+  name: roboshop-lb-service
   labels:
     purpose: lb
 spec:
