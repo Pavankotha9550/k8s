@@ -4,7 +4,7 @@ metadata:
   name: LB-port-demo
   labels:
     name: roboshop
-    server: LB-nginx-frontend
+    server: lb-nginx-frontend
     env: dev
 spec:
   type: LoadBalancer
