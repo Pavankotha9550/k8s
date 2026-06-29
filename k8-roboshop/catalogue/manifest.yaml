@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-catalogue
+  labels:
+    name: configmap-catalogue
+    project: roboshop
+data:
+  # property-like keys; each key maps to a simple value
+  MONGO: "true"
+  MONGO_URL: "mongodb://mongodb27017/catalogue"
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
