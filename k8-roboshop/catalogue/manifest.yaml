@@ -8,7 +8,7 @@ metadata:
 data:
   # property-like keys; each key maps to a simple value
   MONGO: "true"
-  MONGO_URL: "mongodb://mongodb:27017/catalogue"
+  MONGO_URL: "mongodb://service-mongodb:27017/catalogue"
 
 
 apiVersion: apps/v1
@@ -36,7 +36,7 @@ spec:
         image: pavankotha9550/catalogue:v1
         envFrom:
         - configMapRef:
-          name: configmap-catalogue
+            name: configmap-catalogue
 
 apiVersion: v1
 kind: Service
