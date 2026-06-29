@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-payment
+  labels:
+    name: configmap-payment
+    project: roboshop
+data:
+  # property-like keys; each key maps to a simple value
+  CART_HOST: "cart"
+  CART_PORT: "8080"
+  USER_HOST: "user"
+  USER_PORT: "8080"
+  AMQP_HOST: "rabbitmq"
+  AMQP_USER: "roboshop"
+  AMQP_PASS: "roboshop123"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  namespace: roboshop
+  labels:
+    name: deployment-payment
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: deployment-payment
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        name: deployment-payment
+        project: roboshop
+    spec:
+      containers:
+      - name: payment
+        image: pavankotha9550/payment:v1
+        envFrom:
+        - configMapRef:
+            name: configmap-payment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-payment
+  namespace: roboshop
+  labels:
+    name: roboshop
+    server: service-payment
+    env: dev
+spec:
+  selector:
+    name: deployment-payment
+    project: roboshop
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
