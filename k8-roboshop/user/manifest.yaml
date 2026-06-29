@@ -11,29 +11,47 @@
 #   REDIS_URL: "redis://service-redis:6379"
 #   MONGO_URL: "mongodb://service-mongodb:27017/users"
 
-apiVersion: apps/v1
-kind: Deployment
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: user
+#   namespace: roboshop
+#   labels:
+#     name: deployment-user
+#     project: roboshop
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       name: deployment-user
+#       project: roboshop
+#   template:
+#     metadata:
+#       labels:
+#         name: deployment-user
+#         project: roboshop
+#     spec:
+#       containers:
+#       - name: user
+#         image: pavankotha9550/user:v1
+#         envFrom:
+#         - configMapRef:
+#             name: configmap-user
+
+apiVersion: v1
+kind: Service
 metadata:
-  name: user
+  name: service-user
   namespace: roboshop
   labels:
+    name: roboshop
+    server: service-user
+    env: dev
+spec:
+  selector:
     name: deployment-user
     project: roboshop
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      name: deployment-user
-      project: roboshop
-  template:
-    metadata:
-      labels:
-        name: deployment-user
-        project: roboshop
-    spec:
-      containers:
-      - name: user
-        image: pavankotha9550/user:v1
-        envFrom:
-        - configMapRef:
-            name: configmap-user
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
