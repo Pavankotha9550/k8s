@@ -7,9 +7,9 @@ metadata:
     project: roboshop
 data:
   # property-like keys; each key maps to a simple value
-  CART_HOST: "cart"
+  CART_HOST: "service-cart"
   CART_PORT: "8080"
-  USER_HOST: "user"
+  USER_HOST: "service-user"
   USER_PORT: "8080"
   AMQP_HOST: "rabbitmq"
   AMQP_USER: "roboshop"
