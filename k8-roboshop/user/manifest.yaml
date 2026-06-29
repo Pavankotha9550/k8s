@@ -10,3 +10,30 @@ data:
   MONGO: "true"
   REDIS_URL: "redis://service-redis:6379"
   MONGO_URL: "mongodb://service-mongodb:27017/users"
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  namespace: roboshop
+  labels:
+    name: deployment-user
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: deployment-user
+      project: roboshop
+  template:
+    metadata:
+      labels:
+        name: deployment-user
+        project: roboshop
+    spec:
+      containers:
+      - name: user
+        image: pavankotha9550/user:v1
+        envFrom:
+        - configMapRef:
+            name: configmap-user
