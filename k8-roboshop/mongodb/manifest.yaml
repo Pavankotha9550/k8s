@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        name: deployment-demo
+        name: deployment-mongodb
         project: roboshop
     spec:
       containers:
