@@ -34,6 +34,9 @@ spec:
       containers:
       - name: catalogue
         image: pavankotha9550/catalogue:v1
+        envFrom:
+        - configMapRef:
+          name: configmap-catalogue
 
 apiVersion: v1
 kind: Service
