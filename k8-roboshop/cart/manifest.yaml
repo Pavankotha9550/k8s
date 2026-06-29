@@ -11,47 +11,47 @@
 #   CATALOGUE_HOST: service-catalogue
 #   CATALOGUE_PORT: "8080"
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: cart
-  namespace: roboshop
-  labels:
-    name: deployment-cart
-    project: roboshop
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      name: deployment-cart
-      project: roboshop
-  template:
-    metadata:
-      labels:
-        name: deployment-cart
-        project: roboshop
-    spec:
-      containers:
-      - name: cart
-        image: pavankotha9550/cart:v1
-        envFrom:
-        - configMapRef:
-            name: configmap-cart
-
-# apiVersion: v1
-# kind: Service
+# apiVersion: apps/v1
+# kind: Deployment
 # metadata:
-#   name: service-cart
+#   name: cart
 #   namespace: roboshop
 #   labels:
-#     name: roboshop
-#     server: service-cart
-#     env: dev
-# spec:
-#   selector:
 #     name: deployment-cart
 #     project: roboshop
-#   ports:
-#     - protocol: TCP
-#       port: 8080
-#       targetPort: 8080
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       name: deployment-cart
+#       project: roboshop
+#   template:
+#     metadata:
+#       labels:
+#         name: deployment-cart
+#         project: roboshop
+#     spec:
+#       containers:
+#       - name: cart
+#         image: pavankotha9550/cart:v1
+#         envFrom:
+#         - configMapRef:
+#             name: configmap-cart
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-cart
+  namespace: roboshop
+  labels:
+    name: roboshop
+    server: service-cart
+    env: dev
+spec:
+  selector:
+    name: deployment-cart
+    project: roboshop
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
