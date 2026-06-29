@@ -1,15 +1,15 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: configmap-user
-  labels:
-    name: configmap-user
-    project: roboshop
-data:
-  # property-like keys; each key maps to a simple value
-  MONGO: "true"
-  REDIS_URL: "redis://service-redis:6379"
-  MONGO_URL: "mongodb://service-mongodb:27017/users"
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: configmap-user
+#   labels:
+#     name: configmap-user
+#     project: roboshop
+# data:
+#   # property-like keys; each key maps to a simple value
+#   MONGO: "true"
+#   REDIS_URL: "redis://service-redis:6379"
+#   MONGO_URL: "mongodb://service-mongodb:27017/users"
 
 apiVersion: apps/v1
 kind: Deployment
