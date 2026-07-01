@@ -45,7 +45,7 @@ spec:
       image: nginx:latest
       volumeMounts:
         - mountPath: /usr/share/nginx/html
-          name: ebs-dynamic
+          name: ebs-dynamic-sc
   volumes:
     - name: ebs-static
       persistentVolumeClaim:
@@ -53,21 +53,21 @@ spec:
 
 ---
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: lb-port-demo
-  labels:
-    name: roboshop
-    server: lb-nginx-frontend
-    env: dev
-spec:
-  type: LoadBalancer
-  selector:
-    name: roboshop
-    server: lb-nginx-frontend
-    env: dev
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80 
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: lb-port-demo
+#   labels:
+#     name: roboshop
+#     server: lb-nginx-frontend
+#     env: dev
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     name: roboshop
+#     server: lb-nginx-frontend
+#     env: dev
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80 
