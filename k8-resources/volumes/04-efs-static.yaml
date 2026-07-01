@@ -13,3 +13,18 @@ spec:
   csi:
     driver: efs.csi.aws.com
     volumeHandle: fs-0f0b470964d5cef7b
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-claim
+spec:
+  accessModes:
+    - ReadWriteOnce # Must match the PV's access mode
+  #storageClassName: "" # Must match the PV's storageClassName
+  volumeName: efs-static # This binds it directly to the reset PV
+  resources:
+    requests:
+      storage: 2Gi # Must be less than or equal to the PV's capacity
