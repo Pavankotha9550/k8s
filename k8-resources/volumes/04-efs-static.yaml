@@ -28,3 +28,47 @@ spec:
   resources:
     requests:
       storage: 2Gi # Must be less than or equal to the PV's capacity
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: roboshop
+    server: lb-nginx-frontend
+    env: dev
+spec:
+  # nodeSelector:
+  #   topology.kubernetes.io/zone: us-east-1c # because it was efc irrespective of location it will attach
+  containers:
+    - name: nginx
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: efs-static
+  volumes:
+    - name: efs-static
+      persistentVolumeClaim:
+        claimName: efs-claim
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-port-demo
+  labels:
+    name: roboshop
+    server: lb-nginx-frontend
+    env: dev
+spec:
+  type: LoadBalancer
+  selector:
+    name: roboshop
+    server: lb-nginx-frontend
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80 
