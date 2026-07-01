@@ -7,6 +7,6 @@ reclaimPolicy: Retain
 parameters:
   provisioningMode: efs-ap
   fileSystemId: fs-0f0b470964d5cef7b
-  
+  directoryPerms: "700"
   basePath: "/roboshop" 
 
