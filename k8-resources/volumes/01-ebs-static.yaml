@@ -22,7 +22,7 @@ spec:
   accessModes:
     - ReadWriteMany # Must match the PV's access mode
   storageClassName: "" # Must match the PV's storageClassName
-  volumeName: test-pv # This binds it directly to the reset PV
+  volumeName: ebs-static # This binds it directly to the reset PV
   resources:
     requests:
       storage: 5Gi # Must be less than or equal to the PV's capacity
