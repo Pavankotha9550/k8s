@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ebs-static
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteMany
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    volumeHandle: vol-0e89d560dced6dc8b
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-claim
+spec:
+  accessModes:
+    - ReadWriteMany # Must match the PV's access mode
+  storageClassName: "" # Must match the PV's storageClassName
+  volumeName: test-pv # This binds it directly to the reset PV
+  resources:
+    requests:
+      storage: 5Gi # Must be less than or equal to the PV's capacity
