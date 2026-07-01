@@ -1,0 +1,38 @@
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-claim
+spec:
+  accessModes:
+    - ReadWriteOnce # Must match the PV's access mode
+  storageClassName: efs-sc # Must match the PV's storageClassName
+  #volumeName: ebs-dynamic # This binds it directly to the reset PV
+  resources:
+    requests:
+      storage: 5Gi # Must be less than or equal to the PV's capacity
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: roboshop
+    server: lb-nginx-frontend
+    env: dev
+spec:
+  nodeSelector:
+    topology.kubernetes.io/zone: us-east-1c 
+  containers:
+    - name: nginx
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: efs-dynamic-sc
+  volumes:
+    - name: efs-dynamic-sc
+      persistentVolumeClaim:
+        claimName: efs-claim
