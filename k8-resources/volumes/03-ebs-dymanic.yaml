@@ -47,7 +47,7 @@ spec:
         - mountPath: /usr/share/nginx/html
           name: ebs-dynamic-sc
   volumes:
-    - name: ebs-static
+    - name: ebs-dynamic-sc
       persistentVolumeClaim:
         claimName: ebs-claim
 
