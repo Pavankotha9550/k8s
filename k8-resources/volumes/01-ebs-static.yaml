@@ -41,7 +41,7 @@ spec:
       image: nginx:latest
       volumeMounts:
         - mountPath: /usr/share/nginx/html
-          name: my-storage-volume
+          name: ebs-static
   volumes:
     - name: ebs-static
       persistentVolumeClaim:
